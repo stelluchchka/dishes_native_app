@@ -8,9 +8,10 @@ export default function DishCard({ navigation, ...props }) {
 
     return (
         <View style={styles.card} >
+            {/* <Text style={styles.title}>{ props.title }</Text>  */}
             <Image
                 style={styles.image}
-                source={{ uri: `http://192.168.1.111` + props.url.slice(16) }} 
+                source={{ uri: `http://172.20.10.4` + props.url.slice(16) }} 
                 resizeMode='contain'
             />
             <View style={styles.container}>

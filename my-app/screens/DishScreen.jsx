@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { axiosInstance } from '../API';
 import { resetDish, setDish } from '../store/DishSlice';
+import Header from '../components/Header';
 
 
 export default function DishScreen({ route }) {
@@ -20,23 +21,23 @@ export default function DishScreen({ route }) {
     }, [dispatch]);
     return (
         <View style={styles.container}>
-            {/* <View style={styles.header}>
-                <Text style={styles.logo}>**логотип</Text>
-                <Text style={styles.headerTitle}>ЗАЯВКИ ДЛЯ ПОВАРОВ В БЫСТРОМ ПИТАНИИ</Text>
-            </View> */}
+              <FlatList
+                ListHeaderComponent={<Header />}
+                stickyHeaderIndices={[0]}
+            />
 
             <View style={styles.contentContainer}>
                 <View style={styles.dishContainer}>
                     <Text style={styles.dishTitle}>{dish.title}</Text>
                     <Image 
                         style={styles.dishImage} 
-                        source={{ uri: dish.url ? 'http://192.168.1.111' + dish.url.slice(16) : undefined }}
+                        source={{ uri: dish.url ? 'http://172.20.10.4' + dish.url.slice(16) : undefined }}
                         resizeMode='contain'
                         />
                     <View style={styles.chefSection}>
                     <Image 
                         style={styles.chefImage} 
-                        source={{ uri: dish.chef_url ? 'http://192.168.1.111' + dish.chef_url.slice(16) : undefined }}
+                        source={{ uri: dish.chef_url ? 'http://172.20.10.4' + dish.chef_url.slice(16) : undefined }}
                         resizeMode='contain'
                         />
                         <View>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 3,
     },
     contentContainer: {
-        flex: 1,
+        // flex: 50,
         justifyContent: 'center',
         alignItems: 'center',
     },
